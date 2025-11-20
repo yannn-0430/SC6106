@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Transfer Money</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h2>Welcome to 6101 DAPP</h2>
-        <p>Please enter your user name</p>
+        <h2>Transfer Money</h2>
+        <input type="text" id="payer" placeholder="Payer Address">
+        <input type="text" id="payee" placeholder="Payee Address">
+        <input type="number" id="amount" placeholder="Amount">
+
+
         <form action="/main" method="post">
-        <input type="text" name="q">
-        <input type="submit" value="Enter"> 
+            <input type="submit" value="Main"> 
         </form>
     </div>
     
