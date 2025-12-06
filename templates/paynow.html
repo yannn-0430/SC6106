@@ -140,8 +140,6 @@
 
         const accounts = await web3.eth.requestAccounts();
 
-
-
         const payer = document.getElementById("payer").value;
 
         const payee = document.getElementById("payee").value;
@@ -155,13 +153,12 @@
       }
 
     async function view_transaction() {
-        const result = await contract.methods.transaction().call();
+        const result = await contract.methods.transfer_view().call();
         console.log(result[0],result[1],result[2]);
         document.getElementById('view_payer').innerText = "Payer: " + result[0];
         document.getElementById('view_payee').innerText = "Payee: " + result[1];
         document.getElementById('view_amount').innerText = "Amount: " + result[2];
     }
-
     </script>
 
   </div>
