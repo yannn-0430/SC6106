@@ -25,20 +25,26 @@ def paynow():
     return(render_template("paynow.html"))
 
 @app.route("/userlog",methods=["GET","POST"])
-def paynow():
+def userlog():
     conn = sqlite3.connect("user.db")
     c = conn.cursor()
     c.execute("select * from user")
-    r=""
+    r= ""
     for row in c:
         r = r + str(row)
     print(r)
     c.close
     conn.close()
-    return(render_template("userlog.html"),r=r)
+    return(render_template("userlog.html",r=r))
 
 @app.route("/deleteuserlog",methods=["GET","POST"])
-def paynow():
+def deleteuserlog():
+    conn = sqlite3.connect("user.db")
+    c = conn.cursor()
+    c.execute("delete from user")
+    conn.commit()
+    c.close()
+    conn.close()
     return(render_template("deleteuserlog.html"))
 
 if __name__ == "__main__":
