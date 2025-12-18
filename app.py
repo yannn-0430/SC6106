@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
-from sqlite3.dbapi2 import Timestamp
-import datetime
 import sqlite3
+import datetime
+
 app = Flask(__name__)
 
-flag = 1 
+flag = 1
 
 @app.route("/",methods=["GET","POST"])
 def index():
@@ -15,8 +15,9 @@ def index():
 @app.route("/main",methods=["GET","POST"])
 def main():
     global flag
+
     if flag == 1:
-        name= request.form.get("q")
+        name = request.form.get("q")
         timestamp = datetime.datetime.now()
         conn = sqlite3.connect("user.db")
         c = conn.cursor()
@@ -31,15 +32,19 @@ def main():
 def paynow():
     return(render_template("paynow.html"))
 
+@app.route("/deposit",methods=["GET","POST"])
+def deposit():
+    return(render_template("deposit.html"))
+
+
 @app.route("/userlog",methods=["GET","POST"])
 def userlog():
     conn = sqlite3.connect("user.db")
     c = conn.cursor()
     c.execute("select * from user")
-    r= ""
+    r = ""
     for row in c:
         r = r + str(row)
-    print(r)
     c.close
     conn.close()
     return(render_template("userlog.html",r=r))
@@ -50,7 +55,7 @@ def deleteuserlog():
     c = conn.cursor()
     c.execute("delete from user")
     conn.commit()
-    c.close()
+    c.close
     conn.close()
     return(render_template("deleteuserlog.html"))
 
